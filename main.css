@@ -1,0 +1,41 @@
+/*Mouse position left to fullscreen control*/
+.ol-mouse-position {
+    right: 45px;
+    color: rgb(255, 255, 255);
+    font-size: 12px;
+    text-align: center;
+    padding: 2.5px;
+    background: rgba(0, 60, 136, 0.5);
+    background-clip: padding-box;
+    border: 3px solid rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+}
+/*Zoom controls below title*/
+.ol-zoom {
+    top: 67px;
+    left: 3px;
+}
+/*Styles the title*/
+#title {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    line-height: 0px;
+    text-align: center;
+    background: rgba(73, 116, 169, 0.7);
+    border-radius: 4px;
+    width: 240px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    margin: 4px;
+    padding: 8px;
+}
+/*Set the header 1 color to white*/
+h1 {
+    color: white;
+}
+/* TO-DO: Set Fullscreen to bottom right
+.ol-full-screen {
+}
+*/
