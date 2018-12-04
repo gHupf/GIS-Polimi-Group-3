@@ -39,3 +39,9 @@ h1 {
 .ol-full-screen {
 }
 */
+
+/* POPUP THING*/
+.popover {
+width: 200px;
+height: auto;
+}

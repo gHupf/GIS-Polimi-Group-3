@@ -46,3 +46,10 @@ var map = new ol.Map ({
 //Define the Layerswitcher
 var layerSwitcher = new ol.control.LayerSwitcher({});
 map.addControl(layerSwitcher);
+
+var elementPopup = document.getElementById('popup');
+
+var popup = new ol.Overlay({
+	element: elementPopup
+});
+map.addOverlay(popup);
