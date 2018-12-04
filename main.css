@@ -1,6 +1,6 @@
 /*Mouse position left to fullscreen control*/
 .ol-mouse-position {
-    right: 45px;
+    right: 10px;
     color: rgb(255, 255, 255);
     font-size: 12px;
     text-align: center;
@@ -25,7 +25,7 @@
     text-align: center;
     background: rgba(73, 116, 169, 0.7);
     border-radius: 4px;
-    width: 240px;
+    width: 440px;
     height: 40px;
     border: 3px solid rgba(255, 255, 255, 0.8);
     margin: 4px;
@@ -38,7 +38,18 @@ h1 {
 /* TO-DO: Set Fullscreen to bottom right
 .ol-full-screen {
 }
+DOOONE 
+PROBLEM IS THAT WHEN YOU HAVE FULLSCREEN IT DOESN`T CHANGE THE POSITION
 */
+
+.ol-full-screen {
+right: 10px;
+top: 800px;
+}
+/* Overview button defined not to overlap*/
+.ol-overviewmap {
+left: 8px;
+bottom: 34px;
 
 /* POPUP THING*/
 .popover {
