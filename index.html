@@ -5,14 +5,21 @@
 	<title>Group 3</title>
 	<link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css">
 	<script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
-    <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="http://rawgit.com/walkermatt/ol-layerswitcher/master/src/ol-layerswitcher.css">
-    <script src="http://rawgit.com/walkermatt/ol-layerswitcher/master/dist/ol-layerswitcher.js"></script>
+	<link rel="stylesheet" href="main.css">
+	<link rel="stylesheet" href="http://rawgit.com/walkermatt/ol-layerswitcher/master/src/ol-layerswitcher.css">
+
+	<!--POPUP BOOTSTRAP -->
+	<link rel="stylesheet" href="libraries/ol_v4.6.5/apidoc/styles/bootstrap.min.css" type="text/css">
+	<script src="libraries/ol_v4.6.5/apidoc/scripts/bootstrap.min.js"></script>
+	
+	<script src="http://rawgit.com/walkermatt/ol-layerswitcher/master/dist/ol-layerswitcher.js"></script>
 </head>
 <body>
-	<div id="map" style="width: 100%; height: 100%; position:fixed">
-        <div id="title"><h1>Group 3 WebGIS</h1></div>
-    </div> <!--TO-DO: The scalebar and os credits are not displayed anymore-->
+	<div id="map">
+		<div id="title"><h1>Group 3 WebGIS</h1></div>
+		<!-- ADDING THE POPUP FUNCTION-->
+		<div id="popup"></div>
+	</div> <!--TO-DO: The scalebar and os credits are not displayed anymore-->
 	<script src="map.js"></script>
 </body>
 </html>

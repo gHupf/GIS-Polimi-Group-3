@@ -1,6 +1,6 @@
 /*Mouse position left to fullscreen control*/
 .ol-mouse-position {
-    right: 45px;
+    right: 10px;
     color: rgb(255, 255, 255);
     font-size: 12px;
     text-align: center;
@@ -25,17 +25,34 @@
     text-align: center;
     background: rgba(73, 116, 169, 0.7);
     border-radius: 4px;
-    width: 240px;
+    width: 440px;
     height: 40px;
     border: 3px solid rgba(255, 255, 255, 0.8);
     margin: 4px;
     padding: 8px;
 }
-/*Set the header 1 color to white*/
+/*Set the header 1 (h1) color to white*/
 h1 {
     color: white;
 }
-/* TO-DO: Set Fullscreen to bottom right
-.ol-full-screen {
+/*Set the map to fill out the whole browser window - still a minor bug though*/
+#map {
+    position: fixed;
+    height: 100%;
+    width: 100%;
 }
-*/
+/*Set the full-screen controls to bottom right*/
+.ol-full-screen {
+    right: 0.9;
+    top:  calc(100% - 3.8em);
+}
+/*Overview button defined not to overlap*/
+.ol-overviewmap {
+    left: 8px;
+    bottom: 34px;
+}
+/*Popup width and height*/
+.popover {
+    width: 200px;
+    height: auto;
+}
