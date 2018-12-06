@@ -31,28 +31,28 @@
     margin: 4px;
     padding: 8px;
 }
-/*Set the header 1 color to white*/
+/*Set the header 1 (h1) color to white*/
 h1 {
     color: white;
 }
-/* TO-DO: Set Fullscreen to bottom right
-.ol-full-screen {
+/*Set the map to fill out the whole browser window - still a minor bug though*/
+#map {
+    position: fixed;
+    height: 100%;
+    width: 100%;
 }
-DOOONE 
-PROBLEM IS THAT WHEN YOU HAVE FULLSCREEN IT DOESN`T CHANGE THE POSITION
-*/
-
+/*Set the full-screen controls to bottom right*/
 .ol-full-screen {
-right: 10px;
-top: 800px;
+    right: 0.9;
+    top:  calc(100% - 3.8em);
 }
-/* Overview button defined not to overlap*/
+/*Overview button defined not to overlap*/
 .ol-overviewmap {
-left: 8px;
-bottom: 34px;
-
-/* POPUP THING*/
+    left: 8px;
+    bottom: 34px;
+}
+/*Popup width and height*/
 .popover {
-width: 200px;
-height: auto;
+    width: 200px;
+    height: auto;
 }
