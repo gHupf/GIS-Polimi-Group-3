@@ -34,10 +34,14 @@ var map = new ol.Map ({
 	    center: ol.proj.fromLonLat([9.116372, 45.469449]),
 	    zoom: 13,
 	}),
-	controls: ol.control.defaults().extend([
+	controls: ol.control.defaults({attribution: false}).extend([
 	    new ol.control.ScaleLine(),
 	    new ol.control.OverviewMap(),
 	    new ol.control.FullScreen(),
+	    new ol.control.Attribution({
+	        collapsible: true,
+	        collapsed: true,
+	    }),
 	    new ol.control.MousePosition({
 	        coordinateFormat: ol.coordinate.createStringXY(4),
 	        projection: 'EPSG: 4326'
