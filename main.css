@@ -11,7 +11,7 @@
     border: 3px solid rgba(255, 255, 255, 0.4);
     border-radius: 4px;
 }
-/*Zoom controls below title*/
+/*Zoom controls position*/
 .ol-zoom {
     top: 67px;
     left: 0.15em;
@@ -36,7 +36,7 @@
 h1 {
     color: white;
 }
-/*Set the map to fill out the whole browser window + grey background*/
+/*Set the map to fill out the whole browser window*/
 #map {
     position: fixed;
     top: 0;

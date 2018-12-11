@@ -5,7 +5,6 @@ var osm = new ol.layer.Tile({
     visible: true,
     source: new ol.source.OSM()
 });
-
 //Define Google Maps (called from a WMS)
 var gmaps = new ol.layer.Tile({
     title: 'Google Maps',
@@ -22,13 +21,43 @@ var stamenWatercolor = new ol.layer.Tile({
         layer: 'watercolor'
     })
 });
-
-var metro = new ol.layer.Image({
-title: 'Metro lines',
-source: new ol.source.ImageWMS({
-url: 'http://localhost:8082/geoserver/wms',
-params: {'LAYERS': 'metro:METRO'}
-})
+var border = new ol.layer.Vector({
+    title: 'Group 3 Border',
+    source: new ol.source.Vector({
+        url: 'border.geojson',
+        format: new ol.format.GeoJSON()
+    })
+});
+var points = new ol.layer.Vector({
+    title: 'Collected points',
+    source: new ol.source.Vector({
+        url: 'points.geojson',
+        format: new ol.format.GeoJSON()
+    })
+});
+var metro = new ol.layer.Vector({
+    title: 'Metro lines',
+    source: new ol.source.Vector({
+        url: 'metro.geojson',
+        format: new ol.format.GeoJSON()
+    }),
+    style: new ol.style.Style({
+        stroke: new ol.style.Stroke({
+            color: [0, 0, 0, 1.0],
+            opacity: 1,
+            width: 5
+        }),
+        zIndex: 1
+    }),
+    style: new ol.style.Style({
+        stroke: new ol.style.Stroke({
+            color: [255, 153, 0, 1.0],
+            opacity: 1,
+            width: 4,
+            lineDash: [4, 10]
+        }),
+        zIndex: 2
+    })
 });
 
 //Add the basemaps and the Layerswitcher
@@ -41,7 +70,7 @@ var map = new ol.Map ({
         }),
         new ol.layer.Group({
             title:'Overlay Layers',
-            layers: [metro]
+            layers: [metro, border, points]
         })
     ],
     view: new ol.View({
