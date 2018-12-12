@@ -21,6 +21,13 @@ var stamenWatercolor = new ol.layer.Tile({
         layer: 'watercolor'
     })
 });
+var coverland = new ol.layer.Image({
+    title: 'Coverland',
+    source: new ol.source.ImageWMS({
+        url: 'http://localhost:8082/geoserver/wms',
+        params: {'LAYERS': 'metro:GlobeLand30_MI'}
+    })
+});
 var border = new ol.layer.Vector({
     title: 'Group 3 Border',
     source: new ol.source.Vector({
@@ -64,32 +71,32 @@ var metro = new ol.layer.Vector({
 var map = new ol.Map ({
     target: document.getElementById('map'),
     layers: [
-        new ol.layer.Group({
-            title: 'Basemaps',
-            layers: [stamenWatercolor, gmaps, osm]
-        }),
-        new ol.layer.Group({
-            title:'Overlay Layers',
-            layers: [metro, border, points]
-        })
+    new ol.layer.Group({
+        title: 'Basemaps',
+        layers: [stamenWatercolor, gmaps, osm]
+    }),
+    new ol.layer.Group({
+        title:'Overlay Layers',
+        layers: [coverland, metro, border, points]
+    })
     ],
     view: new ol.View({
         center: ol.proj.fromLonLat([9.116372, 45.469449]),
         zoom: 13,
     }),
-   controls: ol.control.defaults({attribution: false}).extend([
-       new ol.control.ScaleLine(),
-       new ol.control.OverviewMap(),
-       new ol.control.FullScreen(),
-       new ol.control.Attribution({
-           collapsible: true,
-           collapsed: true,
-       }),
-       new ol.control.MousePosition({
-           coordinateFormat: ol.coordinate.createStringXY(4),
-           projection: 'EPSG: 4326'
-       })
-       ])
+    controls: ol.control.defaults({attribution: false}).extend([
+     new ol.control.ScaleLine(),
+     new ol.control.OverviewMap(),
+     new ol.control.FullScreen(),
+     new ol.control.Attribution({
+         collapsible: true,
+         collapsed: true,
+     }),
+     new ol.control.MousePosition({
+         coordinateFormat: ol.coordinate.createStringXY(4),
+         projection: 'EPSG: 4326'
+     })
+     ])
 });
 //Define the Layerswitcher
 var layerSwitcher = new ol.control.LayerSwitcher({});
@@ -104,7 +111,7 @@ var popup = new ol.Overlay({
 map.addOverlay(popup);
 
  // Make a check for the popup to work only for the DOTS not for the borders
-map.on('click', function(event) {
+ map.on('click', function(event) {
     var feature = map.forEachFeatureAtPixel(event.pixel, function(feature, layer) {
         return feature;
     });
@@ -112,7 +119,7 @@ map.on('click', function(event) {
         var pixel = event.pixel;
         var coord = map.getCoordinateFromPixel(pixel);
         popup.setPosition(coord);
-        $(elementPopup).attr('title', 'Ecuador railways');
+        $(elementPopup).attr('title', 'Test XXXXXX');
         $(elementPopup).attr('data-content', '<b>Id: </b>' + feature.get('FID_rail_d') +
             '</br><b>Description: </b>' + feature.get('F_CODE_DES'));
         $(elementPopup).popover({'placement': 'top', 'html': true});
@@ -120,15 +127,16 @@ map.on('click', function(event) {
     }
 });
 
-map.on('click', function(event) {
-document.getElementById('get-feature-info').innerHTML = '';
-var viewResolution = (map.getView().getResolution());
-var url = ecuadorRoads.getSource().getGetFeatureInfoUrl(event.coordinate,
-viewResolution, 'EPSG:3857', {'INFO_FORMAT': 'text/html'});
-if (url)
-document.getElementById('get-feature-info').innerHTML = '<iframeseamless src="' + url + '"></iframe>';
+//Click things, get-feature, unfinished
+ map.on('click', function(event) {
+    document.getElementById('get-feature-info').innerHTML = '';
+    var viewResolution = (map.getView().getResolution());
+    var url = coverland.getSource().getGetFeatureInfoUrl(event.coordinate,
+        viewResolution, 'EPSG:4326', {'INFO_FORMAT': 'text/html'});
+    if (url)
+        document.getElementById('get-feature-info').innerHTML = '<iframeseamless src="' + url + '"></iframe>';
 });
-map.on('pointermove', function(e) {
+ map.on('pointermove', function(e) {
     if (e.dragging) {
         $(elementPopup).popover('destroy');
         return;
