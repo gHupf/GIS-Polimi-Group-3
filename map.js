@@ -103,6 +103,7 @@ var popup = new ol.Overlay({
 });
 map.addOverlay(popup);
 
+ // Make a check for the popup to work only for the DOTS not for the borders
 map.on('click', function(event) {
     var feature = map.forEachFeatureAtPixel(event.pixel, function(feature, layer) {
         return feature;
