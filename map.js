@@ -11,7 +11,7 @@ var gmaps = new ol.layer.Tile({
     type: 'base',
     visible: false,
     source: new ol.source.TileImage({ url: 'http://mt1.google.com/vt/lyrs=m@113&hl=en&&x={x}&y={y}&z={z}' })
-})
+});
 //Define Stamen Watercolor
 var stamenWatercolor = new ol.layer.Tile({
     title: 'Stamen Watercolor',
@@ -118,6 +118,15 @@ map.on('click', function(event) {
         $(elementPopup).popover({'placement': 'top', 'html': true});
         $(elementPopup).popover('show');
     }
+});
+
+map.on('click', function(event) {
+document.getElementById('get-feature-info').innerHTML = '';
+var viewResolution = (map.getView().getResolution());
+var url = ecuadorRoads.getSource().getGetFeatureInfoUrl(event.coordinate,
+viewResolution, 'EPSG:3857', {'INFO_FORMAT': 'text/html'});
+if (url)
+document.getElementById('get-feature-info').innerHTML = '<iframeseamless src="' + url + '"></iframe>';
 });
 map.on('pointermove', function(e) {
     if (e.dragging) {
