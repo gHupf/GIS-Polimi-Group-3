@@ -21,20 +21,41 @@ var stamenWatercolor = new ol.layer.Tile({
         layer: 'watercolor'
     })
 });
+//Add GlobeLand30 via WMS
 var coverland = new ol.layer.Image({
-    title: 'Coverland',
+    title: 'GlobaLand30',
     source: new ol.source.ImageWMS({
-        url: 'http://localhost:8082/geoserver/wms',
-        params: {'LAYERS': 'metro:GlobeLand30_MI'}
-    })
+        url: 'http://localhost:8080/geoserver/wms',
+        params: {'LAYERS': 'group_three:GlobeLand30'}
+    }),
+    opacity: 0.7
 });
-var border = new ol.layer.Vector({
-    title: 'Group 3 Border',
-    source: new ol.source.Vector({
-        url: 'border.geojson',
-        format: new ol.format.GeoJSON()
-    })
+//Add the Group 3 borders via WFS
+var vectorSource = new ol.source.Vector({
+    loader: function(extent, resolution, projection) {
+        var url = 'http://localhost:8080/geoserver/group_three/ows?service=WFS&' +
+        'version=2.0.0&request=GetFeature&typeName=group_three:borders&' +
+        'outputFormat=text/javascript&srsname=EPSG:3857&' +
+        'format_options=callback:loadFeatures';
+        $.ajax({url: url, dataType: 'jsonp'})
+    }
 });
+var geojsonFormat = new ol.format.GeoJSON();
+    function loadFeatures(response) {
+        vectorSource.addFeatures(geojsonFormat.readFeatures(response));
+    }
+var groupBorders = new ol.layer.Vector ({
+    title: 'Border Group 3',
+    source: vectorSource,
+    style: new ol.style.Style({
+        stroke: new ol.style.Stroke({
+            color: 'rgb(0, 0, 0)',
+            width: 2,
+            lineDash: [2.5, 4, .5, 4, .5, 4]
+        })
+    })
+})
+//Add all the collected points
 var points = new ol.layer.Vector({
     title: 'Collected points',
     source: new ol.source.Vector({
@@ -42,6 +63,7 @@ var points = new ol.layer.Vector({
         format: new ol.format.GeoJSON()
     })
 });
+//Add the metro lines
 var metro = new ol.layer.Vector({
     title: 'Metro lines',
     source: new ol.source.Vector({
@@ -77,12 +99,12 @@ var map = new ol.Map ({
     }),
     new ol.layer.Group({
         title:'Overlay Layers',
-        layers: [coverland, metro, border, points]
+        layers: [coverland, metro, points, groupBorders]
     })
     ],
     view: new ol.View({
-        center: ol.proj.fromLonLat([9.116372, 45.469449]),
-        zoom: 13,
+        center: ol.proj.fromLonLat([9.169052, 45.464674]),
+        zoom: 12.3,
     }),
     controls: ol.control.defaults({attribution: false}).extend([
      new ol.control.ScaleLine(),
@@ -109,9 +131,8 @@ var popup = new ol.Overlay({
     element: elementPopup
 });
 map.addOverlay(popup);
-
- // Make a check for the popup to work only for the DOTS not for the borders
- map.on('click', function(event) {
+// Make a check for the popup to work only for the DOTS not for the borders
+map.on('click', function(event) {
     var feature = map.forEachFeatureAtPixel(event.pixel, function(feature, layer) {
         return feature;
     });
@@ -126,17 +147,17 @@ map.addOverlay(popup);
         $(elementPopup).popover('show');
     }
 });
-
-//Click things, get-feature, unfinished
- map.on('click', function(event) {
+//GetFeatureInfo
+map.on('click', function(event) {
     document.getElementById('get-feature-info').innerHTML = '';
     var viewResolution = (map.getView().getResolution());
     var url = coverland.getSource().getGetFeatureInfoUrl(event.coordinate,
-        viewResolution, 'EPSG:4326', {'INFO_FORMAT': 'text/html'});
+        viewResolution, 'EPSG:3857', {'INFO_FORMAT': 'text/html'});
     if (url)
-        document.getElementById('get-feature-info').innerHTML = '<iframeseamless src="' + url + '"></iframe>';
+        document.getElementById('get-feature-info').innerHTML = '<iframe seamless src="' + url + '"></iframe>';
 });
- map.on('pointermove', function(e) {
+
+map.on('pointermove', function(e) {
     if (e.dragging) {
         $(elementPopup).popover('destroy');
         return;
