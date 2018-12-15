@@ -25,7 +25,7 @@ var stamenWatercolor = new ol.layer.Tile({
 var coverland = new ol.layer.Image({
     title: 'GlobaLand30',
     source: new ol.source.ImageWMS({
-        url: 'http://localhost:8080/geoserver/wms',
+        url: 'http://localhost:8082/geoserver/wms',
         params: {'LAYERS': 'group_three:GlobeLand30'}
     }),
     opacity: 0.7
@@ -33,7 +33,7 @@ var coverland = new ol.layer.Image({
 //Add the Group 3 borders via WFS
 var vectorSource = new ol.source.Vector({
     loader: function(extent, resolution, projection) {
-        var url = 'http://localhost:8080/geoserver/group_three/ows?service=WFS&' +
+        var url = 'http://localhost:8082/geoserver/group_three/ows?service=WFS&' +
         'version=2.0.0&request=GetFeature&typeName=group_three:borders&' +
         'outputFormat=text/javascript&srsname=EPSG:3857&' +
         'format_options=callback:loadFeatures';
@@ -55,19 +55,36 @@ var groupBorders = new ol.layer.Vector ({
         })
     })
 })
+// styles for the dots
+var pointstyle = new ol.style.Style({
+        image: new ol.style.Icon({
+          anchor: [0.50, 0.0],
+          size: [120, 120],
+          offset: [0, 0],
+          opacity: 1,
+          scale: 0.5,
+          src: 'data/camera.png'
+        })
+      });
+
 //Add all the collected points
 var points = new ol.layer.Vector({
     title: 'Collected points',
     source: new ol.source.Vector({
-        url: 'points.geojson',
+        url: 'data/points.geojson',
         format: new ol.format.GeoJSON()
-    })
+    }),
+            style: pointstyle
 });
+
+
+
+
 //Add the metro lines
 var metro = new ol.layer.Vector({
     title: 'Metro lines',
     source: new ol.source.Vector({
-        url: 'metro.geojson',
+        url: 'data/metro.geojson',
         format: new ol.format.GeoJSON()
     }),
     style: new ol.style.Style({
@@ -127,6 +144,8 @@ map.addControl(layerSwitcher);
 //POPUP DEFINITION
 var elementPopup = document.getElementById('popup');
 
+    
+
 var popup = new ol.Overlay({
     element: elementPopup
 });
@@ -148,7 +167,7 @@ map.on('click', function(event) {
     }
 });
 //GetFeatureInfo
-map.on('click', function(event) {
+map.on('singleclick', function(event) {
     document.getElementById('get-feature-info').innerHTML = '';
     var viewResolution = (map.getView().getResolution());
     var url = coverland.getSource().getGetFeatureInfoUrl(event.coordinate,
@@ -156,6 +175,8 @@ map.on('click', function(event) {
     if (url)
         document.getElementById('get-feature-info').innerHTML = '<iframe seamless src="' + url + '"></iframe>';
 });
+
+  
 
 map.on('pointermove', function(e) {
     if (e.dragging) {
