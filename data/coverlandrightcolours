@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<sld:StyledLayerDescriptor version="1.0.0" xmlns="http://www.opengis.net/sld" xmlns:gml="http://www.opengis.net/gml" xmlns:ogc="http://www.opengis.net/ogc" xmlns:sld="http://www.opengis.net/sld">
+    <sld:UserLayer>
+        <sld:LayerFeatureConstraints>
+            <sld:FeatureTypeConstraint/>
+        </sld:LayerFeatureConstraints>
+        <sld:UserStyle>
+            <sld:Name>GlobeLand30_MI</sld:Name>
+            <sld:Title/>
+            <sld:FeatureTypeStyle>
+                <sld:Name/>
+                <sld:Rule>
+                    <sld:RasterSymbolizer>
+                        <sld:Geometry>
+                            <ogc:PropertyName>grid</ogc:PropertyName>
+                        </sld:Geometry>
+                        <sld:Opacity>1</sld:Opacity>
+                        <sld:ColorMap>
+                            <sld:ColorMapEntry color="#f9f3c1" label="Cultivated Land" opacity="1.0" quantity="10"/>
+                            <sld:ColorMapEntry color="#147749" label="Forest" opacity="1.0" quantity="20"/>
+                            <sld:ColorMapEntry color="#a9d05f" label="Grassland" opacity="1.0" quantity="30"/>
+                            <sld:ColorMapEntry color="#5cc0a5" label="40" opacity="1.0" quantity="40"/>
+                            <sld:ColorMapEntry color="#903926" label="50" opacity="1.0" quantity="50"/>
+                            <sld:ColorMapEntry color="#00569a" label="Water body" opacity="1.0" quantity="60"/>
+                            <sld:ColorMapEntry color="#2a3eaf" label="70" opacity="1.0" quantity="70"/>
+                            <sld:ColorMapEntry color="#932f14" label="Artificial superficie" opacity="1.0" quantity="80"/>
+                        </sld:ColorMap>
+                    </sld:RasterSymbolizer>
+                </sld:Rule>
+            </sld:FeatureTypeStyle>
+        </sld:UserStyle>
+    </sld:UserLayer>
+</sld:StyledLayerDescriptor>

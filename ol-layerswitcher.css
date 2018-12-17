@@ -20,6 +20,7 @@
 .layer-switcher .panel {
     padding: 0 1em 0 0;
     margin: 0;
+    width: 190px;
     border: 4px solid #eee;
     border-radius: 4px;
     background-color: white;
@@ -70,7 +71,7 @@
 
 .layer-switcher li.layer label, .layer-switcher li.layer input {
     display: block;
-    vertical-align: sub;
+    vertical-align: super
 }
 
 .layer-switcher label.disabled {
