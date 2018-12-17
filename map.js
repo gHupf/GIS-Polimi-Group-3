@@ -23,7 +23,7 @@ var stamenWatercolor = new ol.layer.Tile({
 });
 //Add GlobeLand30 via WMS
 var coverland = new ol.layer.Image({
-    title: 'GlobaLand30',
+    title: 'GlobeLand30 <img src="https://i.imgur.com/2mgZ8UK.png">',
     source: new ol.source.ImageWMS({
         url: 'http://localhost:8082/geoserver/wms',
         params: {'LAYERS': 'group_three:GlobeLand30'}
@@ -74,7 +74,7 @@ var points = new ol.layer.Vector({
         url: 'data/points.geojson',
         format: new ol.format.GeoJSON()
     }),
-            style: pointstyle
+        style: pointstyle
 });
 
 
