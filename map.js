@@ -26,6 +26,7 @@ var coverland = new ol.layer.Image({
     title: 'GlobeLand30 <img src="https://i.imgur.com/2mgZ8UK.png">',
     source: new ol.source.ImageWMS({
         url: 'http://localhost:8082/geoserver/wms',
+        crossOrigin: 'anonymous',
         params: {'LAYERS': 'group_three:GlobeLand30'}
     }),
     opacity: 0.7,
@@ -209,11 +210,12 @@ var infoPopup = new ol.Overlay({
 map.addOverlay(infoPopup);
 
 map.on('singleclick', function(event) {
-    var pixel = event.pixel;
-    var coord = map.getCoordinateFromPixel(pixel);
-    infoPopup.setPosition(coord);
-
-    document.getElementById('get-feature-info').innerHTML = '';
+    map.forEachLayerAtPixel(event.pixel, function(layer) {
+        if (layer===coverland){    
+            var pixel = event.pixel;
+            var coord = map.getCoordinateFromPixel(pixel);
+            infoPopup.setPosition(coord);
+            document.getElementById('get-feature-info').innerHTML = '';
     var viewResolution = (map.getView().getResolution());
     var url = coverland.getSource().getGetFeatureInfoUrl(event.coordinate,
         viewResolution, 'EPSG:3857', {'INFO_FORMAT': 'text/html'});
@@ -222,7 +224,10 @@ map.on('singleclick', function(event) {
     }
     else {
         map.removeOverlay(infoPopup);
-    }
+  
+}
+}
+});
 });
 //Change pointer on feature
 map.on('pointermove', function(e) {
