@@ -76,18 +76,14 @@ titletext {
 }
 /*Popup width and height*/
 .popover {
-    width: 200px;
-    height: auto;
+    width: 300px;
+    height: 400px;
+    overflow: auto;
 }
 /*Attribution position*/
 .ol-attribution {
     right: 2.7em;
     top: calc(100% - 2.6em);
-}
-/*Layerswitcher position*/
-.ol.control.LayerSwitcher {
-    right: 0.15em;
-    top: 100%;
 }
 /*Scaleline position*/
 .ol-scale-line {
@@ -99,13 +95,17 @@ titletext {
     position: absolute;
     left: 0;
     bottom: 0em;
-    z-index: 0;
-    background: white;
+    z-index: 1;
+    background: linear-gradient(to right, rgba(219, 228, 240, 1), rgba(73, 116, 169, 1));
+    border: 1px solid white;
+    border-radius: 5px;
+    width: 160px;
+    height: 90px;
 }
 iframe {
-border: 0px;
-height: 110px;
-width: 90vw;
+    border: 0px;
+    height: 110px;
+    width: 90vw;
 }
 .ol-layer-switcher {
     top: 0;

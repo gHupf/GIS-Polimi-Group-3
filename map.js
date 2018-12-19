@@ -28,10 +28,17 @@ var coverland = new ol.layer.Image({
         url: 'http://localhost:8082/geoserver/wms',
         params: {'LAYERS': 'group_three:GlobeLand30'}
     }),
-    opacity: 0.7
+    opacity: 0.7,
+    visible: false
 });
+//Define the load feature
+var geojsonFormat = new ol.format.GeoJSON();
+    function loadFeatures(response) {
+        vectorOne.addFeatures(geojsonFormat.readFeatures(response));
+        vectorTwo.addFeatures(geojsonFormat.readFeatures(response));
+    }
 //Add the Group 3 borders via WFS
-var vectorSource = new ol.source.Vector({
+var vectorOne = new ol.source.Vector({
     loader: function(extent, resolution, projection) {
         var url = 'http://localhost:8082/geoserver/group_three/ows?service=WFS&' +
         'version=2.0.0&request=GetFeature&typeName=group_three:borders&' +
@@ -40,13 +47,9 @@ var vectorSource = new ol.source.Vector({
         $.ajax({url: url, dataType: 'jsonp'})
     }
 });
-var geojsonFormat = new ol.format.GeoJSON();
-    function loadFeatures(response) {
-        vectorSource.addFeatures(geojsonFormat.readFeatures(response));
-    }
 var groupBorders = new ol.layer.Vector ({
     title: 'Border Group 3',
-    source: vectorSource,
+    source: vectorOne,
     style: new ol.style.Style({
         stroke: new ol.style.Stroke({
             color: 'rgb(0, 0, 0)',
@@ -54,32 +57,47 @@ var groupBorders = new ol.layer.Vector ({
             lineDash: [2.5, 4, .5, 4, .5, 4]
         })
     })
-})
-// styles for the dots
-var pointstyle = new ol.style.Style({
-        image: new ol.style.Icon({
-          anchor: [0.50, 0.0],
-          size: [120, 120],
-          offset: [0, 0],
-          opacity: 1,
-          scale: 0.5,
-          src: 'data/camera.png'
-        })
-      });
-
-//Add all the collected points
-var points = new ol.layer.Vector({
-    title: 'Collected points',
-    source: new ol.source.Vector({
-        url: 'data/points.geojson',
-        format: new ol.format.GeoJSON()
-    }),
-        style: pointstyle
 });
-
-
-
-
+//Add all the points via WFS and style them according to their class
+var vectorTwo = new ol.source.Vector({
+    loader: function(extent, resolution, projection) {
+        var url = 'http://localhost:8082/geoserver/group_three/ows?service=WFS&' +
+        'version=2.0.0&request=GetFeature&typeName=group_three:Points&' +
+        'outputFormat=text/javascript&srsname=EPSG:3857&' +
+        'format_options=callback:loadFeatures';
+        $.ajax({url: url, dataType: 'jsonp'})
+    }
+});
+var styleFunction = function(feature, resolution) {
+    if(feature.get('class') === 'Artificial surface') {
+        icon = 'icons/Artificial_surfaces.svg'
+    } else if(feature.get('class') === 'Bare land') {
+        icon = 'icons/Barrenlands.svg'
+    } else if(feature.get('class') === 'Cultivated land') {
+        icon = 'icons/Cultivated_land.svg'
+    } else if(feature.get('class') === 'Forest') {
+        icon = 'icons/Forests.svg'
+    } else if(feature.get('class') === 'Grassland') {
+        icon = 'icons/Grasslands.svg'
+    } else if(feature.get('class') === 'Shrubland') {
+        icon = 'icons/Shrublands.svg'
+    } else if(feature.get('class') === 'Water body') {
+        icon = 'icons/Waterbodies.svg'
+    } else if(feature.get('class') === 'Wetland') {
+        icon = 'icons/Wetland.svg'
+    }
+    return [new ol.style.Style({
+        image: new ol.style.Icon({
+            src: icon,
+            scale: 0.7
+        })
+    })]
+};
+var points = new ol.layer.Vector ({
+    title: 'Gathered Points',
+    source: vectorTwo,
+    style: styleFunction
+});
 //Add the metro lines
 var metro = new ol.layer.Vector({
     title: 'Metro lines',
@@ -105,7 +123,6 @@ var metro = new ol.layer.Vector({
         zIndex: 2
     })
 });
-
 //Add the basemaps and the Layerswitcher
 var map = new ol.Map ({
     target: document.getElementById('map'),
@@ -125,14 +142,13 @@ var map = new ol.Map ({
     }),
     controls: ol.control.defaults({attribution: false}).extend([
      new ol.control.ScaleLine(),
-     new ol.control.OverviewMap(),
      new ol.control.FullScreen(),
      new ol.control.Attribution({
          collapsible: true,
          collapsed: true,
      }),
      new ol.control.MousePosition({
-         coordinateFormat: ol.coordinate.createStringXY(4),
+         coordinateFormat: ol.coordinate.createStringXY(3),
          projection: 'EPSG: 4326'
      })
      ])
@@ -140,44 +156,75 @@ var map = new ol.Map ({
 //Define the Layerswitcher
 var layerSwitcher = new ol.control.LayerSwitcher({});
 map.addControl(layerSwitcher);
-
-//POPUP DEFINITION
+//Define Popup
 var elementPopup = document.getElementById('popup');
-
-    
-
 var popup = new ol.Overlay({
     element: elementPopup
 });
 map.addOverlay(popup);
-// Make a check for the popup to work only for the DOTS not for the borders
+//Make a check for the popup to work only for the DOTS not for the borders
 map.on('click', function(event) {
     var feature = map.forEachFeatureAtPixel(event.pixel, function(feature, layer) {
         return feature;
     });
     if (feature != null) {
+        if (feature.get('comment') != null) {
+            comment = feature.get('comment')
+        }
+        else {
+            comment = "<i>No comment added</i>";
+        };
         var pixel = event.pixel;
         var coord = map.getCoordinateFromPixel(pixel);
         popup.setPosition(coord);
-        $(elementPopup).attr('title', 'Test XXXXXX');
-        $(elementPopup).attr('data-content', '<b>Id: </b>' + feature.get('FID_rail_d') +
-            '</br><b>Description: </b>' + feature.get('F_CODE_DES'));
+        $(elementPopup).attr('title', '<b>Attributes</b>');
+        $(elementPopup).attr('data-content', '<b>Point number: </b>' + '&ensp;' + feature.get('id') +
+            '</br><b>Class: </b>' + '&emsp;&emsp;&emsp;&emsp;&nbsp;' + feature.get('class') +
+            '</br><b>Certainty: </b>' + '&emsp;&emsp;&ensp;' + feature.get('certainty') +
+            '</br><b>Comment: </b>' + '&emsp;&emsp;&nbsp;' + comment +
+            '</br><b>When was it taken: </b>' + feature.get('time') +
+            '</br><b>Image 1: </b>' + '<img id="north" alt="North Image" width="230" height="150" onclick="window.open(this.src)" onmouseover="" style="cursor: pointer;" />' +
+            '</br><b>Image 2: </b>' + '<img id="east" alt="East Image" width="230" height="150" onclick="window.open(this.src)" onmouseover="" style="cursor: pointer;" />' +
+            '</br><b>Image 3: </b>' + '<img id="south" alt="South Image" width="230" height="150" onclick="window.open(this.src)" onmouseover="" style="cursor: pointer;" />' +
+            '</br><b>Image 4: </b>' + '<img id="west" alt="West Image" width="230" height="150" onclick="window.open(this.src)" onmouseover="" style="cursor: pointer;" />');
         $(elementPopup).popover({'placement': 'top', 'html': true});
         $(elementPopup).popover('show');
+
+        document.getElementById('north').src = feature.get('link_n');
+        document.getElementById('east').src = feature.get('link_e');
+        document.getElementById('south').src = feature.get('link_s');
+        document.getElementById('west').src = feature.get('link_w');
+    }
+    else {
+        $(elementPopup).popover({'html': true});
+        $(elementPopup).popover('hide');
     }
 });
-//GetFeatureInfo
+
+//GetFeatureInfo as popup
+var featureInfo = document.getElementById('get-feature-info');
+var infoPopup = new ol.Overlay({
+    element: featureInfo
+});
+map.addOverlay(infoPopup);
+
 map.on('singleclick', function(event) {
+    var pixel = event.pixel;
+    var coord = map.getCoordinateFromPixel(pixel);
+    infoPopup.setPosition(coord);
+
     document.getElementById('get-feature-info').innerHTML = '';
     var viewResolution = (map.getView().getResolution());
     var url = coverland.getSource().getGetFeatureInfoUrl(event.coordinate,
         viewResolution, 'EPSG:3857', {'INFO_FORMAT': 'text/html'});
-    if (url)
+    if (url != null) {
         document.getElementById('get-feature-info').innerHTML = '<iframe seamless src="' + url + '"></iframe>';
+    }
+    else {
+        map.removeOverlay(infoPopup);
+    }
 });
-
-  
-
+//Change pointer on feature
 map.on('pointermove', function(e) {
     if (e.dragging) {
         $(elementPopup).popover('destroy');
