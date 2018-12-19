@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Land Cover POLIMI - info</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="index.html">POLIMI GIS Land Cover</a></h1>
+						<nav id="nav">
+							<ul>
+								<li class="special">
+									<a href="#menu" class="menuToggle"><span>Menu</span></a>
+									<div id="menu">
+										<ul>
+											<li><a href="index.html">Home</a></li>
+											<li><a href="generic.html">Map</a></li>
+											<li><a href="http://www.globallandcover.com/GLC30Download/index.aspx">Globeland30 webmap</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Main -->
+					<article id="main">
+						<header>
+							<h2>Project info</h2>
+							<p>A detailed report of our working scheme and the challenges we faced</p>
+						</header>
+						<section class="wrapper style5">
+							<div class="inner">
+
+								<h3>Project aim</h3>
+								<p> We collected data to create a website (hosted offline in a local server) and a web map, which allows the user to access specific data related to the city of Milan. The project is part of the course of Geographic Information Systems, taught by professor Maria Antonia Brovelli at <a href= https://www.polimi.it/en/ target="_blank"> Politecnico di Milano</a>. </p>
+								<hr />
+
+								<h4>Work flow</h4>
+								<p>The project was divided in two main parts. The first one was to collect the land cover data, which is the
+                                physical material at the surface of the earth, you can check the different categories <a href="Landcover-categories.html" target="_blank">here</a>. The tool used for this was 
+                                the <a href= "https://landcover.como.polimi.it/collector/"target="_blank">Land Cover Collector</a> mobile app, created 
+                                at Politecnico di Milano.
+                                To collect the data, we went to Milan zone 7, the area assigned to the group, to geocach our
+                                60 relevant points. Each group member reached 20 points, taking specific pictures about the
+                                area and its surroundings. Then, we defined the type of surface according to the land cover categories and the 
+                                degree of confidence in its classification. After collecting all the points, they were stored into a server.</p>
+
+								<p>The second part was to code both the website and the web map. The method to create the web map
+                                was based on the practical classes given by the PhD. Candidate Candan Eylül Kilsedar. For this, some
+                                tools were required. First, <a href=https://live.osgeo.org/en/index.html target="_blank">OSGeo Live</a>, a system developed by The Open Source Geospatial Foundation (OSGeo), was installed. I's a Virtual Machine based on Lubuntu allows to try a wide variety of free and open source geospatial software without installing anything. The second tool used was <a href=http://geoserver.org/ target="blank">GeoServer</a>, an open source server for sharing
+                                geospatial data. With the Geoserver it was possible to upload the different maps we needed to upload
+                                for the web map. Finally, the code was designed using Sublime and it was programmed in HTML,
+                                JavaScript and CSS.</p>
+
+                                <p>The library used for the web map was <a href=https://openlayers.org/ target="blank">OpenLayers</a>, which is an open-source
+                                JavaScript library for displaying map data in web browsers as slippy maps. For the web map, it was
+                                required to create a map with three different basemaps, controls for the map itself, like fullscreen,
+                                overlayer and zoom buttons. In addition, the <a href=http://www.globallandcover.com/GLC30Download/index.aspx target="_blank">GlobeLand30</a> map, which is a raster file, was added as an
+                                overlayer, showing the categories of cover land for the city of Milan and its legend.</p>
+                                <hr />
+
+                                <h5>Challenges</h5>
+                                <p>The biggest problems we had during the project were: 1) Physical and weather adversities for points
+                                that were in difficult spots and far away; 2) There were some technical issues with the server of the
+                                app, meaning that two members of the group had to repeat the collecting process in two separated
+                                days; 3) The getfeatureinfo function was a bit problematic and there was a considerable effort to make
+                                it work smoothly adding it to a popup, but it was not successful.</p>         
+                                <hr />
+
+                                <h6>Website design</h6>
+                                <p>This website is based on a template from website <a href=https://html5up.net/>html5up.net</a> that was re-designed 
+                                to adapt it to our needs, altering the code and its content.</p>
+                                <hr />
+							</div>
+						</section>
+					</article>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="icons">
+							<li><a href="https://twitter.com/GEOlab_polimi" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="https://www.facebook.com/polimi" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+							<li><a href="https://www.polimi.it/en/" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+							<li><a href="mailto:ivan.lombardich@mail.polimi.it" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+						</ul>
+						<ul>
+						 <div class="image"><img src="images/polimilogo.png" width="500" height="104.41" alt="" /></div>
+						</ul>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
