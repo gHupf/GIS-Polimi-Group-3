@@ -37,6 +37,7 @@ var geojsonFormat = new ol.format.GeoJSON();
     function loadFeatures(response) {
         vectorOne.addFeatures(geojsonFormat.readFeatures(response));
         vectorTwo.addFeatures(geojsonFormat.readFeatures(response));
+        vectorThree.addFeatures(geojsonFormat.readFeatures(response));
     }
 //Add the Group 3 borders via WFS
 var vectorOne = new ol.source.Vector({
@@ -63,42 +64,95 @@ var groupBorders = new ol.layer.Vector ({
 var vectorTwo = new ol.source.Vector({
     loader: function(extent, resolution, projection) {
         var url = 'http://localhost:8082/geoserver/group_three/ows?service=WFS&' +
-        'version=2.0.0&request=GetFeature&typeName=group_three:Points&' +
+        'version=2.0.0&request=GetFeature&typeName=group_three:Pointswithgroup&' +
         'outputFormat=text/javascript&srsname=EPSG:3857&' +
         'format_options=callback:loadFeatures';
         $.ajax({url: url, dataType: 'jsonp'})
     }
 });
-var styleFunction = function(feature, resolution) {
-    if(feature.get('class') === 'Artificial surface') {
-        icon = 'icons/Artificial_surfaces.svg'
-    } else if(feature.get('class') === 'Bare land') {
-        icon = 'icons/Barrenlands.svg'
-    } else if(feature.get('class') === 'Cultivated land') {
-        icon = 'icons/Cultivated_land.svg'
-    } else if(feature.get('class') === 'Forest') {
-        icon = 'icons/Forests.svg'
-    } else if(feature.get('class') === 'Grassland') {
-        icon = 'icons/Grasslands.svg'
-    } else if(feature.get('class') === 'Shrubland') {
-        icon = 'icons/Shrublands.svg'
-    } else if(feature.get('class') === 'Water body') {
-        icon = 'icons/Waterbodies.svg'
-    } else if(feature.get('class') === 'Wetland') {
-        icon = 'icons/Wetland.svg'
+
+//Add the vector used for the points of our group
+var vectorThree = new ol.source.Vector({
+    loader: function(extent, resolution, projection) {
+        var url = 'http://localhost:8082/geoserver/group_three/ows?service=WFS&' +
+        'version=2.0.0&request=GetFeature&typeName=group_three:points3857&' +
+        'outputFormat=text/javascript&srsname=EPSG:3857&' +
+        'format_options=callback:loadFeatures';
+        $.ajax({url: url, dataType: 'jsonp'})
     }
-    return [new ol.style.Style({
-        image: new ol.style.Icon({
-            src: icon,
-            scale: 0.7
-        })
-    })]
+});
+var styleFunction1 = function(feature, resolution) {
+    if(feature.get('Group') != '3'){
+        if(feature.get('class') === 'Artificial surface') {
+            icon = 'icons/Artificial_surfaces.svg'
+        } else if(feature.get('class') === 'Bare land') {
+            icon = 'icons/Barrenlands.svg'
+        } else if(feature.get('class') === 'Cultivated land') {
+            icon = 'icons/Cultivated_land.svg'
+        } else if(feature.get('class') === 'Forest') {
+            icon = 'icons/Forests.svg'
+        } else if(feature.get('class') === 'Grassland') {
+            icon = 'icons/Grasslands.svg'
+        } else if(feature.get('class') === 'Shrubland') {
+            icon = 'icons/Shrublands.svg'
+        } else if(feature.get('class') === 'Water body') {
+            icon = 'icons/Waterbodies.svg'
+        } else if(feature.get('class') === 'Wetland') {
+            icon = 'icons/Wetland.svg'
+        }
+        return [new ol.style.Style({
+            image: new ol.style.Icon({
+                src: icon,
+                scale: 0.5,
+                opacity: 0.7,
+
+            })
+        })]
+    }
+    
+};
+var styleFunction2 = function(feature, resolution) {
+    if(feature.get('Group') == '3'){
+        if(feature.get('class') === 'Artificial surface') {
+            icon = 'icons/Artificial_surfaces.svg'
+        } else if(feature.get('class') === 'Bare land') {
+            icon = 'icons/Barrenlands.svg'
+        } else if(feature.get('class') === 'Cultivated land') {
+            icon = 'icons/Cultivated_land.svg'
+        } else if(feature.get('class') === 'Forest') {
+            icon = 'icons/Forests.svg'
+        } else if(feature.get('class') === 'Grassland') {
+            icon = 'icons/Grasslands.svg'
+        } else if(feature.get('class') === 'Shrubland') {
+            icon = 'icons/Shrublands.svg'
+        } else if(feature.get('class') === 'Water body') {
+            icon = 'icons/Waterbodies.svg'
+        } else if(feature.get('class') === 'Wetland') {
+            icon = 'icons/Wetland.svg'
+        }
+        return [new ol.style.Style({
+            image: new ol.style.Icon({
+                src: icon,
+                scale: 0.7,
+                opacity: 1.0,
+
+            })
+        })]
+    }  
 };
 var points = new ol.layer.Vector ({
-    title: 'Gathered Points',
+    title: 'Other Points',
     source: vectorTwo,
-    style: styleFunction
+    style: styleFunction1
 });
+
+//Add the points of our group
+var ourpoints = new ol.layer.Vector ({
+    title: 'Our Points',
+    source: vectorThree,
+    style: styleFunction2
+});    
+
 //Add the metro lines
 var metro = new ol.layer.Vector({
     title: 'Metro lines',
@@ -134,7 +188,7 @@ var map = new ol.Map ({
     }),
     new ol.layer.Group({
         title:'Overlay Layers',
-        layers: [coverland, metro, points, groupBorders]
+        layers: [coverland, metro, points, ourpoints, groupBorders]
     })
     ],
     view: new ol.View({
