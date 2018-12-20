@@ -295,7 +295,7 @@ map.on('pointermove', function(e) {
         return;
     };
     map.forEachFeatureAtPixel(e.pixel, function(feature, layer) {
-        if (layer === points) {
+        if (layer === points || ourpoints) {
             var pixel = map.getEventPixel(e.originalEvent);
             var hit = map.hasFeatureAtPixel(pixel);
             map.getTarget().style.cursor = hit ? 'pointer' : '';
