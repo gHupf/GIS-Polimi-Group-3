@@ -221,7 +221,7 @@ map.addOverlay(popup);
 //Make a check for the popup to work only for the DOTS not for the borders
 map.on('click', function(event) {
     var feature = map.forEachFeatureAtPixel(event.pixel, function(feature, layer) {
-        if (layer === points) {
+        if (layer === points || ourpoints) {
             return feature;
         }
     });
