@@ -26,8 +26,9 @@ var coverland = new ol.layer.Image({
     title: 'GlobeLand30 <img src="https://i.imgur.com/2mgZ8UK.png">',
     source: new ol.source.ImageWMS({
         url: 'http://localhost:8082/geoserver/wms',
-        crossOrigin: 'anonymous',
-        params: {'LAYERS': 'group_three:GlobeLand30'}
+        params: {'LAYERS': 'group_three:GlobeLand30'},
+        serverType: 'geoserver',
+        crossOrigin: 'anonymous'
     }),
     opacity: 0.7,
     visible: false
@@ -220,7 +221,9 @@ map.addOverlay(popup);
 //Make a check for the popup to work only for the DOTS not for the borders
 map.on('click', function(event) {
     var feature = map.forEachFeatureAtPixel(event.pixel, function(feature, layer) {
-        return feature;
+        if (layer === points) {
+            return feature;
+        }
     });
     if (feature != null) {
         if (feature.get('comment') != null) {
@@ -265,31 +268,37 @@ map.addOverlay(infoPopup);
 
 map.on('singleclick', function(event) {
     map.forEachLayerAtPixel(event.pixel, function(layer) {
-        if (layer===coverland){    
+        if (layer===coverland){
             var pixel = event.pixel;
             var coord = map.getCoordinateFromPixel(pixel);
             infoPopup.setPosition(coord);
             document.getElementById('get-feature-info').innerHTML = '';
-    var viewResolution = (map.getView().getResolution());
-    var url = coverland.getSource().getGetFeatureInfoUrl(event.coordinate,
-        viewResolution, 'EPSG:3857', {'INFO_FORMAT': 'text/html'});
-    if (url != null) {
-        document.getElementById('get-feature-info').innerHTML = '<iframe seamless src="' + url + '"></iframe>';
-    }
-    else {
-        map.removeOverlay(infoPopup);
-  
-}
-}
-});
+            var viewResolution = (map.getView().getResolution());
+            var url = coverland.getSource().getGetFeatureInfoUrl(event.coordinate,
+                viewResolution, 'EPSG:3857', {'INFO_FORMAT': 'text/html'});
+                    if (url != null) {
+                        document.getElementById('get-feature-info').innerHTML = '<iframe seamless src="' + url + '"></iframe>';
+                    }
+                    else {
+                        map.removeOverlay(infoPopup);
+                    }
+        }
+    })
 });
 //Change pointer on feature
 map.on('pointermove', function(e) {
+    var pixel = map.getEventPixel(e.originalEvent);
+    var hit = map.hasFeatureAtPixel(pixel);
+    map.getTarget().style.cursor = hit ? 'auto' : '';
     if (e.dragging) {
         $(elementPopup).popover('destroy');
         return;
-    }
-    var pixel = map.getEventPixel(e.originalEvent);
-    var hit = map.hasFeatureAtPixel(pixel);
-    map.getTarget().style.cursor = hit ? 'pointer' : '';
+    };
+    map.forEachFeatureAtPixel(e.pixel, function(feature, layer) {
+        if (layer === points) {
+            var pixel = map.getEventPixel(e.originalEvent);
+            var hit = map.hasFeatureAtPixel(pixel);
+            map.getTarget().style.cursor = hit ? 'pointer' : '';
+        }
+    });
 });
