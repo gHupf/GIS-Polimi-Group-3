@@ -38,7 +38,6 @@ var geojsonFormat = new ol.format.GeoJSON();
     function loadFeatures(response) {
         vectorOne.addFeatures(geojsonFormat.readFeatures(response));
         vectorTwo.addFeatures(geojsonFormat.readFeatures(response));
-        vectorThree.addFeatures(geojsonFormat.readFeatures(response));
     }
 //Add the Group 3 borders via WFS
 var vectorOne = new ol.source.Vector({
@@ -65,95 +64,64 @@ var groupBorders = new ol.layer.Vector ({
 var vectorTwo = new ol.source.Vector({
     loader: function(extent, resolution, projection) {
         var url = 'http://localhost:8082/geoserver/group_three/ows?service=WFS&' +
-        'version=2.0.0&request=GetFeature&typeName=group_three:Pointswithgroup&' +
+        'version=2.0.0&request=GetFeature&typeName=group_three:Points&' +
         'outputFormat=text/javascript&srsname=EPSG:3857&' +
         'format_options=callback:loadFeatures';
         $.ajax({url: url, dataType: 'jsonp'})
     }
 });
-
-//Add the vector used for the points of our group
-var vectorThree = new ol.source.Vector({
-    loader: function(extent, resolution, projection) {
-        var url = 'http://localhost:8082/geoserver/group_three/ows?service=WFS&' +
-        'version=2.0.0&request=GetFeature&typeName=group_three:points3857&' +
-        'outputFormat=text/javascript&srsname=EPSG:3857&' +
-        'format_options=callback:loadFeatures';
-        $.ajax({url: url, dataType: 'jsonp'})
-    }
-});
-var styleFunction1 = function(feature, resolution) {
-    if(feature.get('Group') != '3'){
+var styleFunction = function(feature, resolution) {
+    if(feature.get('group_number') === 3) {
         if(feature.get('class') === 'Artificial surface') {
-            icon = 'icons/Artificial_surfaces.svg'
+            icon = 'icons/Artificial_surfaces_three.svg';
         } else if(feature.get('class') === 'Bare land') {
-            icon = 'icons/Barrenlands.svg'
+            icon = 'icons/Barrenlands_three.svg';
         } else if(feature.get('class') === 'Cultivated land') {
-            icon = 'icons/Cultivated_land.svg'
+            icon = 'icons/Cultivated_land_three.svg';
         } else if(feature.get('class') === 'Forest') {
-            icon = 'icons/Forests.svg'
+            icon = 'icons/Forests_three.svg';
         } else if(feature.get('class') === 'Grassland') {
-            icon = 'icons/Grasslands.svg'
+            icon = 'icons/Grasslands_three.svg';
         } else if(feature.get('class') === 'Shrubland') {
-            icon = 'icons/Shrublands.svg'
+            icon = 'icons/Shrublands_three.svg';
         } else if(feature.get('class') === 'Water body') {
-            icon = 'icons/Waterbodies.svg'
+            icon = 'icons/Waterbodies_three.svg';
         } else if(feature.get('class') === 'Wetland') {
-            icon = 'icons/Wetland.svg'
+            icon = 'icons/Wetland_three.svg';
         }
-        return [new ol.style.Style({
-            image: new ol.style.Icon({
-                src: icon,
-                scale: 0.5,
-                opacity: 0.7,
-
-            })
-        })]
     }
-    
-};
-var styleFunction2 = function(feature, resolution) {
-    if(feature.get('Group') == '3'){
+    else {
         if(feature.get('class') === 'Artificial surface') {
-            icon = 'icons/Artificial_surfaces.svg'
+            icon = 'icons/Artificial_surfaces.svg';
         } else if(feature.get('class') === 'Bare land') {
-            icon = 'icons/Barrenlands.svg'
+            icon = 'icons/Barrenlands.svg';
         } else if(feature.get('class') === 'Cultivated land') {
-            icon = 'icons/Cultivated_land.svg'
+            icon = 'icons/Cultivated_land.svg';
         } else if(feature.get('class') === 'Forest') {
-            icon = 'icons/Forests.svg'
+            icon = 'icons/Forests.svg';
         } else if(feature.get('class') === 'Grassland') {
-            icon = 'icons/Grasslands.svg'
+            icon = 'icons/Grasslands.svg';
         } else if(feature.get('class') === 'Shrubland') {
-            icon = 'icons/Shrublands.svg'
+            icon = 'icons/Shrublands.svg';
         } else if(feature.get('class') === 'Water body') {
-            icon = 'icons/Waterbodies.svg'
+            icon = 'icons/Waterbodies.svg';
         } else if(feature.get('class') === 'Wetland') {
-            icon = 'icons/Wetland.svg'
+            icon = 'icons/Wetland.svg';
         }
-        return [new ol.style.Style({
-            image: new ol.style.Icon({
-                src: icon,
-                scale: 0.7,
-                opacity: 1.0,
-
-            })
-        })]
-    }  
+    }
+    return [new ol.style.Style({
+        image: new ol.style.Icon({
+            src: icon,
+            scale: 0.75
+        })
+    })];
 };
+
 var points = new ol.layer.Vector ({
-    title: 'Other Points',
+    title: 'Gathered Points',
     source: vectorTwo,
-    style: styleFunction1
+    style: styleFunction
 });
-
-//Add the points of our group
-var ourpoints = new ol.layer.Vector ({
-    title: 'Our Points',
-    source: vectorThree,
-    style: styleFunction2
-});    
-
 //Add the metro lines
 var metro = new ol.layer.Vector({
     title: 'Metro lines',
@@ -189,12 +157,13 @@ var map = new ol.Map ({
     }),
     new ol.layer.Group({
         title:'Overlay Layers',
-        layers: [coverland, metro, points, ourpoints, groupBorders]
+        layers: [coverland, metro, points, groupBorders]
     })
     ],
     view: new ol.View({
         center: ol.proj.fromLonLat([9.169052, 45.464674]),
         zoom: 12.3,
+        minZoom: 12.3,
     }),
     controls: ol.control.defaults({attribution: false}).extend([
      new ol.control.ScaleLine(),
@@ -221,7 +190,7 @@ map.addOverlay(popup);
 //Make a check for the popup to work only for the DOTS not for the borders
 map.on('click', function(event) {
     var feature = map.forEachFeatureAtPixel(event.pixel, function(feature, layer) {
-        if (layer === points || ourpoints) {
+        if (layer === points) {
             return feature;
         }
     });
@@ -267,6 +236,7 @@ var infoPopup = new ol.Overlay({
 map.addOverlay(infoPopup);
 
 map.on('singleclick', function(event) {
+    $(featureInfo).hide();
     map.forEachLayerAtPixel(event.pixel, function(layer) {
         if (layer===coverland){
             var pixel = event.pixel;
@@ -277,10 +247,8 @@ map.on('singleclick', function(event) {
             var url = coverland.getSource().getGetFeatureInfoUrl(event.coordinate,
                 viewResolution, 'EPSG:3857', {'INFO_FORMAT': 'text/html'});
                     if (url != null) {
+                        $(featureInfo).show();
                         document.getElementById('get-feature-info').innerHTML = '<iframe seamless src="' + url + '"></iframe>';
-                    }
-                    else {
-                        map.removeOverlay(infoPopup);
                     }
         }
     })
@@ -292,10 +260,11 @@ map.on('pointermove', function(e) {
     map.getTarget().style.cursor = hit ? 'auto' : '';
     if (e.dragging) {
         $(elementPopup).popover('destroy');
+        $(featureInfo).hide();
         return;
     };
     map.forEachFeatureAtPixel(e.pixel, function(feature, layer) {
-        if (layer === points || ourpoints) {
+        if (layer === points) {
             var pixel = map.getEventPixel(e.originalEvent);
             var hit = map.hasFeatureAtPixel(pixel);
             map.getTarget().style.cursor = hit ? 'pointer' : '';
