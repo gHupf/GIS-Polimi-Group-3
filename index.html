@@ -1,27 +1,154 @@
-<!doctype html>
-<html lang="en">
-<meta charset="utf-8">
-<head>
-	<title>Group 3</title>
-	<link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css">
-	<script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
-	<link rel="stylesheet" href="main.css">
-	<link rel="stylesheet" href="ol-layerswitcher.css">
-	<!--JQUERY -->
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-	<!--POPUP BOOTSTRAP -->
-	<link rel="stylesheet" href="libraries/v5.3.0/apidoc/styles/bootstrap.min.css" type="text/css">
-	<script src="libraries/v5.3.0/apidoc/scripts/bootstrap.min.js"></script>
-	<script src="http://rawgit.com/walkermatt/ol-layerswitcher/master/dist/ol-layerswitcher.js"></script>
-</head>
-<body>
-	<div id="logo"></div> <!--Contains the background logo-->
-	<div id="map">
-		<div id="title"><titletext>Group 3 WebGIS</titletext></div> <!--Contains the project title-->
-		<div id="popup"></div> <!-- ADDING THE POPUP FUNCTION-->
-		<div id="get-feature-info"></div>  <!-- ADDING THE FEATURES FUNCTION-->
-		<div id="style"></div>
-	</div>
-	<script src="map.js"></script>
-</body>
+<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Land Cover POLIMI</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="landing is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<h1><a href="index.html">POLIMI GIS Land Cover</a></h1>
+						<nav id="nav">
+							<ul>
+								<li class="special">
+									<a href="#menu" class="menuToggle"><span>Menu</span></a>
+									<div id="menu">
+										<ul>
+											<li><a href="../index.html" target="_blank">Map</a></li>
+											<li><a href="generic.html">Info</a></li>
+											<li><a href="http://www.globallandcover.com/GLC30Download/index.aspx" target="_blank">Globeland30 webmap</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Banner -->
+					<section id="banner">
+						<div class="inner">
+							<h2>Land Cover Data Collection</h2>
+							<p> A field survey of land cover in Milan zone 7<br />
+							a project for <a href="https://landcover.como.polimi.it/collector/" target="_blank">LC Collector POLIMI</a><br />
+							by Politecnico di Milano students</p>
+							<ul class="actions special">
+								<li><a href="../index.html" target="_blank" class="button primary">See map</a></li>
+							</ul>
+						</div>
+						<a href="#one" class="more scrolly">Learn More</a>
+					</section>
+
+				<!-- One -->
+					<section id="one" class="wrapper style1 special">
+						<div class="inner">
+							<header class="major">
+								<h2>This mapping project was done for the Geographic Information Systems course followed in 2018 at Politecnico di Milano </h2>
+								<p>The course is held by prof. Brovelli Maria Antonia<br />
+								with the assistance of Candan Eylül Kilsedar and Daniele Oxoli</p>
+							</header>
+							<ul class="icons major">
+								<li><span class="icon fa-globe europe major style1"><span class="label">Lorem</span></span></li>
+								<li><span class="icon fa-map marked major style2"><span class="label">Ipsum</span></span></li>
+								<li><span class="icon fa-leaf alt major style3"><span class="label">Dolor</span></span></li>
+							</ul>
+						</div>
+					</section>
+
+				<!-- Two -->
+					<section id="two" class="wrapper alt style2">
+						<section class="spotlight">
+							<div class="image"><img src="images/polimi.jpg" alt="" /></div><div class="content">
+								<h2>We're a group of three international students from Politecnico di Milano</h2>
+								<p>Henrique Goulart from Brasil<br/>
+								Thorsten Zobel from Germany<br/>
+								Ivan Lombardich from Argentina</p>
+							</div>
+						</section>
+						<section class="spotlight">
+							<div class="image" height=477.7px><img src="images/Milano-map.jpg" alt="" /></div><div class="content">
+								<h2>Mapping Milan</h2>
+								<p>Our group worked on <a href="Municipio_7_milano.html" target="_blank">Milan zone 7</a>, using the <a href="https://landcover.como.polimi.it/collector/" target="_blank">Land Cover Collector app</a> to check the accuracy of the information provided in the <a href=http://www.globallandcover.com/GLC30Download/index.aspx target="_blank">GlobeLand30</a> map.</p>
+							</div>
+						</section>
+					</section>
+
+				<!-- Three -->
+					<section id="three" class="wrapper style3 special">
+						<div class="inner">
+							<header class="major">
+								<h2>Project quick facts</h2>
+								<p>Get to know the essentials. You can read a detailed report on the <a href="generic.html">info</a> section. </p>
+							</header>
+							<ul class="features">
+								<li class="icon fa-paper-plane-o">
+									<h3>GlobeLand30</h3>
+									<p>One of our map layers is taken from the <a href=http://www.globallandcover.com/GLC30Download/index.aspx target="_blank">GlobeLand30</a> project, donated by China to the <a href=http://ggim.un.org target="_blank">United Nations</a>. It is the first open access, high resolution map of Earth's land cover, as a contribution towards global sustainable development.</p>
+								</li>
+			                    <li class="icon fa-code">
+									<h3>OSGeo - Open Source Geospatial Foundation</h3>
+									<p>The whole project was developed using <a href=https://live.osgeo.org/en/index.html target="_blank">OSGeo Live</a>, a system based on Lubuntu, that allows to try a wide variety of free and open source geospatial software without installing anything. </p>
+								</li>
+								<li class="icon fa-laptop">
+									<h3>Open source softwares</h3>
+									<p></br>
+										The geospatial data was analyzed using <a href=https://qgis.org/en/site/ target="_blank">QGIS</a> and uploaded in <a href=http://geoserver.org/ target="_blank">GeoServer</a>. </p>
+								</li>
+								<li class="icon fa-leaf">
+									<h3>Sustainable transportation</h3>
+									<p>Only bikes and public transportation were used for our geocaching in Milan zone 7. </p>
+							</ul>
+						</div>
+					</section>
+
+				<!-- CTA -->
+					<section id="cta" class="wrapper style4">
+						<div class="inner">
+							<header>
+								<h2 align="center">Land Cover Data Collection</h2>
+								<p align="center">Take a look at our contributions in Milan zone 7 or see the official site of the main project!</p>
+							</header>
+							<ul class="actions stacked">
+								<li><a href="../index.html" target="_blank" class="button fit primary">See Map</a></li>
+								<li><a href="https://landcover.como.polimi.it/collector/" target="_blank" class="button fit">Polimi project</a></li>
+							</ul>
+						</div>
+					</section>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="icons">
+							<li><a href="https://twitter.com/GEOlab_polimi" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="https://www.facebook.com/polimi/" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+							<li><a href="https://www.polimi.it/en/" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+							<li><a href="mailto:ivan.lombardich@mail.polimi.it" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+						</ul>
+						<ul>
+						 <div class="image"><img src="images/polimilogo.png" width="500" height="104.41" alt="" /></div>
+						</ul>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
 </html>
