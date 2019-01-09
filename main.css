@@ -116,7 +116,7 @@ iframe {
 }
 /*Styling the control buttons*/
 .ol-control button{
-    background: linear-gradient(to right, rgba(168, 168, 168, 0.7), rgba(84, 84, 84, 0.7));
+    background: linear-gradient(to right, rgba(150, 150, 150, 0.7), rgba(100, 100, 100, 0.7));
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 3px;
     border: 1px solid rgba(255, 255, 255, 0.8);
