@@ -1,0 +1,143 @@
+<coverage>
+  <id>CoverageInfoImpl--15f83d46:167b27da532:-7fae</id>
+  <name>omartest</name>
+  <nativeName>omartest</nativeName>
+  <namespace>
+    <id>NamespaceInfoImpl-35560289:167b2203dc4:-7ffe</id>
+  </namespace>
+  <title>omartest</title>
+  <description>Generated from GeoTIFF</description>
+  <keywords>
+    <string>omartest</string>
+    <string>WCS</string>
+    <string>GeoTIFF</string>
+  </keywords>
+  <nativeCRS class="org.geotools.referencing.crs.DefaultEngineeringCRS">LOCAL_CS[&quot;Wildcard 2D cartesian plane in metric unit&quot;, 
+  LOCAL_DATUM[&quot;Unknown&quot;, 0], 
+  UNIT[&quot;m&quot;, 1.0], 
+  AXIS[&quot;x&quot;, EAST], 
+  AXIS[&quot;y&quot;, NORTH], 
+  AUTHORITY[&quot;EPSG&quot;,&quot;404000&quot;]]</nativeCRS>
+  <srs>EPSG:404000</srs>
+  <nativeBoundingBox>
+    <minx>8.994942792698458</minx>
+    <maxx>9.304948330962263</maxx>
+    <miny>45.361812167930914</miny>
+    <maxy>45.51840674983952</maxy>
+    <crs class="org.geotools.referencing.crs.DefaultEngineeringCRS">EPSG:404000</crs>
+  </nativeBoundingBox>
+  <latLonBoundingBox>
+    <minx>8.994942792698458</minx>
+    <maxx>9.304948330962263</maxx>
+    <miny>45.361812167930914</miny>
+    <maxy>45.51840674983952</maxy>
+    <crs>EPSG:4326</crs>
+  </latLonBoundingBox>
+  <projectionPolicy>REPROJECT_TO_DECLARED</projectionPolicy>
+  <enabled>true</enabled>
+  <metadata>
+    <entry key="dirName">test_omartest</entry>
+  </metadata>
+  <store class="coverageStore">
+    <id>CoverageStoreInfoImpl--15f83d46:167b27da532:-7faf</id>
+  </store>
+  <nativeFormat>GeoTIFF</nativeFormat>
+  <grid dimension="2">
+    <range>
+      <low>0 0</low>
+      <high>1558 787</high>
+    </range>
+    <transform>
+      <scaleX>1.9897659708845E-4</scaleX>
+      <scaleY>-1.9897659708845E-4</scaleY>
+      <shearX>0.0</shearX>
+      <shearY>0.0</shearY>
+      <translateX>8.995042280997001</translateX>
+      <translateY>45.518307261540976</translateY>
+    </transform>
+    <crs>EPSG:404000</crs>
+  </grid>
+  <supportedFormats>
+    <string>ArcGrid</string>
+    <string>GIF</string>
+    <string>PNG</string>
+    <string>JPEG</string>
+    <string>TIFF</string>
+    <string>GEOTIFF</string>
+    <string>GeoPackage (mosaic)</string>
+    <string>ImageMosaic</string>
+    <string>NetCDF</string>
+  </supportedFormats>
+  <interpolationMethods>
+    <string>nearest neighbor</string>
+    <string>bilinear</string>
+    <string>bicubic</string>
+  </interpolationMethods>
+  <defaultInterpolationMethod>nearest neighbor</defaultInterpolationMethod>
+  <dimensions>
+    <coverageDimension>
+      <name>RED_BAND</name>
+      <description>GridSampleDimension[-Infinity,Infinity]</description>
+      <range>
+        <min>-inf</min>
+        <max>inf</max>
+      </range>
+      <unit>W.m-2.Sr-1</unit>
+      <dimensionType>
+        <name>UNSIGNED_8BITS</name>
+      </dimensionType>
+    </coverageDimension>
+    <coverageDimension>
+      <name>GREEN_BAND</name>
+      <description>GridSampleDimension[-Infinity,Infinity]</description>
+      <range>
+        <min>-inf</min>
+        <max>inf</max>
+      </range>
+      <unit>W.m-2.Sr-1</unit>
+      <dimensionType>
+        <name>UNSIGNED_8BITS</name>
+      </dimensionType>
+    </coverageDimension>
+    <coverageDimension>
+      <name>BLUE_BAND</name>
+      <description>GridSampleDimension[-Infinity,Infinity]</description>
+      <range>
+        <min>-inf</min>
+        <max>inf</max>
+      </range>
+      <unit>W.m-2.Sr-1</unit>
+      <dimensionType>
+        <name>UNSIGNED_8BITS</name>
+      </dimensionType>
+    </coverageDimension>
+    <coverageDimension>
+      <name>ALPHA_BAND</name>
+      <description>GridSampleDimension[-Infinity,Infinity]</description>
+      <range>
+        <min>-inf</min>
+        <max>inf</max>
+      </range>
+      <dimensionType>
+        <name>UNSIGNED_8BITS</name>
+      </dimensionType>
+    </coverageDimension>
+  </dimensions>
+  <requestSRS>
+    <string>EPSG:404000</string>
+  </requestSRS>
+  <responseSRS>
+    <string>EPSG:404000</string>
+  </responseSRS>
+  <parameters>
+    <entry>
+      <string>InputTransparentColor</string>
+      <null/>
+    </entry>
+    <entry>
+      <string>SUGGESTED_TILE_SIZE</string>
+      <string>512,512</string>
+    </entry>
+  </parameters>
+  <nativeCoverageName>omartest</nativeCoverageName>
+</coverage>
