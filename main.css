@@ -6,7 +6,7 @@
     font-size: 12px;
     text-align: center;
     padding: 2.5px;
-    background: linear-gradient(to right, rgba(170, 200, 170, 0.7), rgba(60, 153, 60, 0.7));
+    background: linear-gradient(to right, rgba(150, 150, 150, 0.7), rgba(100, 100, 100, 0.7));
     background-clip: padding-box;
     border: 3px solid rgba(255, 255, 255, 0.4);
     border-radius: 4px;
@@ -24,7 +24,7 @@
     z-index: 1;
     line-height: 0em;
     text-align: center;
-    background: linear-gradient(to right, rgba(170, 200, 170, 0.7), rgba(60, 153, 60, 0.7));
+    background: linear-gradient(to right, rgba(150, 150, 150, 0.7), rgba(100, 100, 100, 0.7));
     border-radius: 5px;
     width: 17em;
     height: 3.1em;
@@ -90,33 +90,33 @@ titletext {
     position: absolute;
     bottom: 0.25em;
     left: 0.25em;
-    background: linear-gradient(to right, rgba(150, 200, 150, 0.7), rgba(102, 153, 102, 0.7));
+    background: linear-gradient(to right, rgba(150, 150, 150, 0.7), rgba(100, 100, 100, 0.7));
     border: 1px solid white;
     border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 3px;
 }
+/*The Popup Window for the GetFeatureInfo*/
 #get-feature-info {
     position: absolute;
     left: 0;
     bottom: 0em;
     z-index: 1;
-    background: linear-gradient(to right, rgba(170, 200, 170, 0.7), rgba(60, 153, 60, 0.7));
+    background: linear-gradient(to right, rgba(168, 168, 168, 0.9), rgba(100, 100, 100, 0.9));
     border: 1px solid white;
     border-radius: 3px;
     width: 11.5em;
     height: 6.3em;
 }
+/*Box for the information displayed in the popup window in the GetFeatureInfo*/
 iframe {
     border: 0px;
     height: 110px;
     width: 90vw;
 }
-.ol-layer-switcher {
-    top: 0;
-}
+/*Styling the control buttons*/
 .ol-control button{
-    background: linear-gradient(to right, rgba(170, 200, 170, 0.7), rgba(60, 153, 60, 0.7));
+    background: linear-gradient(to right, rgba(168, 168, 168, 0.7), rgba(84, 84, 84, 0.7));
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 3px;
     border: 1px solid rgba(255, 255, 255, 0.8);

@@ -1,20 +1,20 @@
 //Define OSM
 var osm = new ol.layer.Tile({
-    title: 'OpenStreetMap',
+    title: '&nbsp; OpenStreetMap',
     type: 'base',
     visible: true,
     source: new ol.source.OSM()
 });
 //Define Google Maps (called from a WMS)
 var gmaps = new ol.layer.Tile({
-    title: 'Google Maps',
+    title: '&nbsp; Google Maps',
     type: 'base',
     visible: false,
     source: new ol.source.TileImage({ url: 'http://mt1.google.com/vt/lyrs=m@113&hl=en&&x={x}&y={y}&z={z}' })
 });
 //Define Stamen Watercolor
 var stamenWatercolor = new ol.layer.Tile({
-    title: 'Stamen Watercolor',
+    title: '&nbsp; Stamen Watercolor',
     type: 'base',
     visible: false,
     source: new ol.source.Stamen({
@@ -23,7 +23,7 @@ var stamenWatercolor = new ol.layer.Tile({
 });
 //Add GlobeLand30 via WMS
 var coverland = new ol.layer.Image({
-    title: 'GlobeLand30 <img src="https://i.imgur.com/2mgZ8UK.png">',
+    title: '&nbsp; GlobeLand30 <p><img src="icons/legend1.png" width="130px" height="auto"></p>',
     source: new ol.source.ImageWMS({
         url: 'http://localhost:8082/geoserver/wms',
         params: {'LAYERS': 'group_three:GlobeLand30'},
@@ -50,7 +50,7 @@ var vectorOne = new ol.source.Vector({
     }
 });
 var groupBorders = new ol.layer.Vector ({
-    title: 'Border Group 3',
+    title: '&nbsp; Border Group 3',
     source: vectorOne,
     style: new ol.style.Style({
         stroke: new ol.style.Stroke({
@@ -118,13 +118,13 @@ var styleFunction = function(feature, resolution) {
 };
 
 var points = new ol.layer.Vector ({
-    title: 'Gathered Points',
+    title: '&nbsp; Gathered Points <p><img src="icons/legend2.png" width="170px" height="auto">',
     source: vectorTwo,
     style: styleFunction
 });
 //Add the metro lines
 var metro = new ol.layer.Vector({
-    title: 'Metro lines',
+    title: '&nbsp; Metro lines',
     source: new ol.source.Vector({
         url: 'data/metro.geojson',
         format: new ol.format.GeoJSON()
