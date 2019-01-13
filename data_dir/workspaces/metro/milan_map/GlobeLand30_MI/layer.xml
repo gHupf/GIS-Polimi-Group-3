@@ -1,0 +1,15 @@
+<layer>
+  <name>GlobeLand30_MI</name>
+  <id>LayerInfoImpl-211664cc:167a3b2a0d1:-7ffd</id>
+  <type>RASTER</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--570ae188:124761b8d78:-7fe2</id>
+  </defaultStyle>
+  <resource class="coverage">
+    <id>CoverageInfoImpl-211664cc:167a3b2a0d1:-7ffe</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

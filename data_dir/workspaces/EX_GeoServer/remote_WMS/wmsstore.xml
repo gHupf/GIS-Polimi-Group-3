@@ -1,0 +1,20 @@
+<wmsStore>
+  <id>WMSStoreInfoImpl-3e9527fe:16735e09d2e:-7ff2</id>
+  <name>remote_WMS</name>
+  <description>remove wms</description>
+  <type>WMS</type>
+  <enabled>true</enabled>
+  <workspace>
+    <id>WorkspaceInfoImpl--2822b68a:167316571ff:-7fff</id>
+  </workspace>
+  <metadata>
+    <entry key="useConnectionPooling">true</entry>
+  </metadata>
+  <__default>false</__default>
+  <capabilitiesURL>http://mesonet.agron.iastate.edu/cgi-bin/wms/goes/conus_vis.cgi?</capabilitiesURL>
+  <user>admin</user>
+  <password>crypt1:WnJlL3p58TcXxPINv9OiaVAVxhXt8Vp6</password>
+  <maxConnections>6</maxConnections>
+  <readTimeout>60</readTimeout>
+  <connectTimeout>30</connectTimeout>
+</wmsStore>

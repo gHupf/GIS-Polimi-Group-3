@@ -1,0 +1,50 @@
+<featureType>
+  <id>FeatureTypeInfoImpl-3e9527fe:16735e09d2e:-7fc4</id>
+  <name>BRA_roads</name>
+  <nativeName>BRA_roads</nativeName>
+  <namespace>
+    <id>NamespaceInfoImpl--2822b68a:167316571ff:-7ffe</id>
+  </namespace>
+  <title>BRA_roads</title>
+  <keywords>
+    <string>features</string>
+    <string>BRA_roads</string>
+  </keywords>
+  <nativeCRS>GEOGCS[&quot;WGS 84&quot;, 
+  DATUM[&quot;World Geodetic System 1984&quot;, 
+    SPHEROID[&quot;WGS 84&quot;, 6378137.0, 298.257223563, AUTHORITY[&quot;EPSG&quot;,&quot;7030&quot;]], 
+    AUTHORITY[&quot;EPSG&quot;,&quot;6326&quot;]], 
+  PRIMEM[&quot;Greenwich&quot;, 0.0, AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]], 
+  UNIT[&quot;degree&quot;, 0.017453292519943295], 
+  AXIS[&quot;Geodetic longitude&quot;, EAST], 
+  AXIS[&quot;Geodetic latitude&quot;, NORTH], 
+  AUTHORITY[&quot;EPSG&quot;,&quot;4326&quot;]]</nativeCRS>
+  <srs>EPSG:4326</srs>
+  <nativeBoundingBox>
+    <minx>-73.49457558358453</minx>
+    <maxx>-32.40205769041679</maxx>
+    <miny>-33.7436714634013</miny>
+    <maxy>5.129896091915304</maxy>
+    <crs>EPSG:4326</crs>
+  </nativeBoundingBox>
+  <latLonBoundingBox>
+    <minx>-73.49457558358453</minx>
+    <maxx>-32.40205769041679</maxx>
+    <miny>-33.7436714634013</miny>
+    <maxy>5.129896091915304</maxy>
+    <crs>EPSG:4326</crs>
+  </latLonBoundingBox>
+  <projectionPolicy>FORCE_DECLARED</projectionPolicy>
+  <enabled>true</enabled>
+  <metadata>
+    <entry key="cachingEnabled">false</entry>
+  </metadata>
+  <store class="dataStore">
+    <id>DataStoreInfoImpl-3e9527fe:16735e09d2e:-7fc5</id>
+  </store>
+  <maxFeatures>0</maxFeatures>
+  <numDecimals>0</numDecimals>
+  <overridingServiceSRS>false</overridingServiceSRS>
+  <skipNumberMatched>false</skipNumberMatched>
+  <circularArcPresent>false</circularArcPresent>
+</featureType>

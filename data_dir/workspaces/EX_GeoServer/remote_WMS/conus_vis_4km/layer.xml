@@ -1,0 +1,15 @@
+<layer>
+  <name>conus_vis_4km</name>
+  <id>LayerInfoImpl-3e9527fe:16735e09d2e:-7ff0</id>
+  <type>WMS</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--570ae188:124761b8d78:-7fe2</id>
+  </defaultStyle>
+  <resource class="wmsLayer">
+    <id>WMSLayerInfoImpl-3e9527fe:16735e09d2e:-7ff1</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

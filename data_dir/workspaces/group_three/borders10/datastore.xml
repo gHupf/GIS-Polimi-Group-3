@@ -1,0 +1,22 @@
+<dataStore>
+  <id>DataStoreInfoImpl--79a32754:16834194729:-7ff5</id>
+  <name>borders10</name>
+  <type>Directory of spatial files (shapefiles)</type>
+  <enabled>true</enabled>
+  <workspace>
+    <id>WorkspaceInfoImpl-35560289:167b2203dc4:-7fff</id>
+  </workspace>
+  <connectionParameters>
+    <entry key="charset">ISO-8859-1</entry>
+    <entry key="filetype">shapefile</entry>
+    <entry key="create spatial index">true</entry>
+    <entry key="memory mapped buffer">false</entry>
+    <entry key="timezone">Europe/Rome</entry>
+    <entry key="enable spatial index">true</entry>
+    <entry key="namespace">group_three</entry>
+    <entry key="cache and reuse memory maps">true</entry>
+    <entry key="url">file:///var/www/html/GIS-Polimi-Group-3/data</entry>
+    <entry key="fstype">shape</entry>
+  </connectionParameters>
+  <__default>false</__default>
+</dataStore>

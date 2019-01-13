@@ -1,0 +1,62 @@
+<featureType>
+  <id>FeatureTypeInfoImpl-667e35cb:167998ff11e:-7ffb</id>
+  <name>METRO</name>
+  <nativeName>METRO</nativeName>
+  <namespace>
+    <id>NamespaceInfoImpl-667e35cb:167998ff11e:-7ffe</id>
+  </namespace>
+  <title>METRO</title>
+  <keywords>
+    <string>features</string>
+    <string>METRO</string>
+  </keywords>
+  <nativeCRS class="projected">PROJCS[&quot;RDN2008 / TM32&quot;, 
+  GEOGCS[&quot;RDN2008&quot;, 
+    DATUM[&quot;Rete Dinamica Nazionale 2008&quot;, 
+      SPHEROID[&quot;GRS 1980&quot;, 6378137.0, 298.257222101, AUTHORITY[&quot;EPSG&quot;,&quot;7019&quot;]], 
+      TOWGS84[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 
+      AUTHORITY[&quot;EPSG&quot;,&quot;1132&quot;]], 
+    PRIMEM[&quot;Greenwich&quot;, 0.0, AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]], 
+    UNIT[&quot;degree&quot;, 0.017453292519943295], 
+    AXIS[&quot;Geodetic longitude&quot;, EAST], 
+    AXIS[&quot;Geodetic latitude&quot;, NORTH], 
+    AUTHORITY[&quot;EPSG&quot;,&quot;6706&quot;]], 
+  PROJECTION[&quot;Transverse_Mercator&quot;, AUTHORITY[&quot;EPSG&quot;,&quot;9807&quot;]], 
+  PARAMETER[&quot;central_meridian&quot;, 9.0], 
+  PARAMETER[&quot;latitude_of_origin&quot;, 0.0], 
+  PARAMETER[&quot;scale_factor&quot;, 0.9996], 
+  PARAMETER[&quot;false_easting&quot;, 500000.0], 
+  PARAMETER[&quot;false_northing&quot;, 0.0], 
+  UNIT[&quot;m&quot;, 1.0], 
+  AXIS[&quot;Easting&quot;, EAST], 
+  AXIS[&quot;Northing&quot;, NORTH], 
+  AUTHORITY[&quot;EPSG&quot;,&quot;6707&quot;]]</nativeCRS>
+  <srs>EPSG:6707</srs>
+  <nativeBoundingBox>
+    <minx>507160.97907574056</minx>
+    <maxx>520979.1643761217</maxx>
+    <miny>5030581.9351033745</miny>
+    <maxy>5042292.807323524</maxy>
+    <crs class="projected">EPSG:6707</crs>
+  </nativeBoundingBox>
+  <latLonBoundingBox>
+    <minx>9.091542987404482</minx>
+    <maxx>9.268688204275136</maxx>
+    <miny>45.42844460455714</miny>
+    <maxy>45.534134119054116</maxy>
+    <crs>EPSG:4326</crs>
+  </latLonBoundingBox>
+  <projectionPolicy>FORCE_DECLARED</projectionPolicy>
+  <enabled>true</enabled>
+  <metadata>
+    <entry key="cachingEnabled">false</entry>
+  </metadata>
+  <store class="dataStore">
+    <id>DataStoreInfoImpl-667e35cb:167998ff11e:-7ffd</id>
+  </store>
+  <maxFeatures>0</maxFeatures>
+  <numDecimals>0</numDecimals>
+  <overridingServiceSRS>false</overridingServiceSRS>
+  <skipNumberMatched>false</skipNumberMatched>
+  <circularArcPresent>false</circularArcPresent>
+</featureType>

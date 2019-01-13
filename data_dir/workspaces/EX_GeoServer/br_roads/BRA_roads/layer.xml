@@ -1,0 +1,15 @@
+<layer>
+  <name>BRA_roads</name>
+  <id>LayerInfoImpl-3e9527fe:16735e09d2e:-7fc3</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl-3e9527fe:16735e09d2e:-7fc0</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-3e9527fe:16735e09d2e:-7fc4</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

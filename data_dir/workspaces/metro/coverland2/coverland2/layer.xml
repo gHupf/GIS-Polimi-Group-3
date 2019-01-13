@@ -1,0 +1,15 @@
+<layer>
+  <name>coverland2</name>
+  <id>LayerInfoImpl--6171a951:167a43442b6:-7fc3</id>
+  <type>RASTER</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--570ae188:124761b8d78:-7fe2</id>
+  </defaultStyle>
+  <resource class="coverage">
+    <id>CoverageInfoImpl--6171a951:167a43442b6:-7fc4</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

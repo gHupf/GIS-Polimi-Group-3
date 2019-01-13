@@ -1,0 +1,23 @@
+<dataStore>
+  <id>DataStoreInfoImpl--7ef14829:167cd02a453:-7ffe</id>
+  <name>group3points</name>
+  <description>only group 3 points</description>
+  <type>Shapefile</type>
+  <enabled>true</enabled>
+  <workspace>
+    <id>WorkspaceInfoImpl-35560289:167b2203dc4:-7fff</id>
+  </workspace>
+  <connectionParameters>
+    <entry key="charset">ISO-8859-1</entry>
+    <entry key="filetype">shapefile</entry>
+    <entry key="create spatial index">true</entry>
+    <entry key="memory mapped buffer">false</entry>
+    <entry key="timezone">Europe/Rome</entry>
+    <entry key="enable spatial index">true</entry>
+    <entry key="namespace">group_three</entry>
+    <entry key="cache and reuse memory maps">true</entry>
+    <entry key="url">file:///home/user/points3857.shp</entry>
+    <entry key="fstype">shape</entry>
+  </connectionParameters>
+  <__default>false</__default>
+</dataStore>

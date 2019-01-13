@@ -1,0 +1,15 @@
+<layer>
+  <name>omartest</name>
+  <id>LayerInfoImpl--15f83d46:167b27da532:-7fad</id>
+  <type>RASTER</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--570ae188:124761b8d78:-7fe2</id>
+  </defaultStyle>
+  <resource class="coverage">
+    <id>CoverageInfoImpl--15f83d46:167b27da532:-7fae</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>
