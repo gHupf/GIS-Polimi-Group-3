@@ -1,0 +1,33 @@
+<GeoServerTileLayer>
+  <id>LayerInfoImpl-3e9527fe:16735e09d2e:-7fcd</id>
+  <enabled>true</enabled>
+  <inMemoryCached>true</inMemoryCached>
+  <name>EX_GeoServer:BRA_water_areas_dcw</name>
+  <mimeFormats>
+    <string>image/png</string>
+    <string>image/jpeg</string>
+  </mimeFormats>
+  <gridSubsets>
+    <gridSubset>
+      <gridSetName>EPSG:900913</gridSetName>
+    </gridSubset>
+    <gridSubset>
+      <gridSetName>EPSG:4326</gridSetName>
+    </gridSubset>
+  </gridSubsets>
+  <metaWidthHeight>
+    <int>4</int>
+    <int>4</int>
+  </metaWidthHeight>
+  <expireCache>0</expireCache>
+  <expireClients>0</expireClients>
+  <parameterFilters>
+    <styleParameterFilter>
+      <key>STYLES</key>
+      <defaultValue></defaultValue>
+      <availableStyles class="sorted-set"/>
+      <defaultStyle>polygon</defaultStyle>
+    </styleParameterFilter>
+  </parameterFilters>
+  <gutter>0</gutter>
+</GeoServerTileLayer>
